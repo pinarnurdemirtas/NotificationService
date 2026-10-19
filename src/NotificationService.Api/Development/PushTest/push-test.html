@@ -1,0 +1,33 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kullanıcılar Arası Push Testi</title><link rel="stylesheet" href="/push-test.css">
+<script defer src="https://www.gstatic.com/firebasejs/12.8.0/firebase-app-compat.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/12.8.0/firebase-messaging-compat.js"></script>
+<script defer src="/development/firebase-config.js"></script><script defer src="/push-test.js"></script></head>
+<body><main>
+<header><span class="eyebrow">NOTIFICATION SERVICE · LOCAL</span><h1>Pınar’dan Ayşe’ye bir mesaj.</h1>
+<p>Chrome’da Pınar, Edge’de Ayşe hesabıyla giriş yap. Ayşe’nin tarayıcısında bildirim iznini aç; Pınar’ın ekranından Ayşe’yi seçip gönder.</p><a href="/swagger">Swagger ↗</a></header>
+<p id="status" role="status" aria-live="polite">Hazırlanıyor…</p>
+<section><h2><span>01</span> Hesabın</h2>
+<div id="signed-out">
+<div class="mode"><button type="button" id="mode-login">Giriş yap</button><button type="button" id="mode-register" class="secondary">Yeni hesap oluştur</button></div>
+<form id="auth-form"><label for="username">Kullanıcı adı</label><input id="username" minlength="3" maxlength="50" autocomplete="username" placeholder="pinar veya ayse" required>
+<div id="display-name-field" hidden><label for="display-name">Görünen ad</label><input id="display-name" maxlength="100" placeholder="Pınar veya Ayşe" disabled></div>
+<label for="password">Parola</label><input id="password" type="password" maxlength="128" autocomplete="current-password" required>
+<p class="hint">Yeni hesap için en az 10 karakterli bir parola belirle. Önceden oluşturulmuş demo hesap veya varsayılan parola yoktur.</p>
+<button id="auth-submit">Giriş yap</button></form></div>
+<div id="signed-in" hidden><p id="account"></p><button id="logout" class="secondary">Cihazı ayır ve çıkış yap</button></div></section>
+<div id="workspace" hidden>
+<section><h2><span>02</span> Bu tarayıcıya bildirim al</h2><p>Bu işlem cihazını giriş yaptığın kullanıcıya bağlar. Göndermek için kendi cihazını kaydetmen gerekmez; alıcının cihazını kaydetmiş olması yeterlidir.</p>
+<label for="device-name">Cihaz adı</label><input id="device-name" maxlength="100" value="Bu tarayıcı">
+<button id="register" disabled>Bildirim izni ver ve cihazımı kaydet</button>
+<label for="token">FCM token’ı</label><textarea id="token" rows="2" readonly placeholder="Kayıttan sonra burada görünür."></textarea><button id="copy" class="secondary" disabled>Token’ı kopyala</button></section>
+<section><h2><span>03</span> Bir kullanıcıya gönder</h2>
+<button id="refresh-users" class="secondary">Kullanıcı listesini yenile</button>
+<form id="send-form"><label for="recipient">Alıcı</label><select id="recipient" required><option value="">Alıcı seç</option></select>
+<label for="title">Başlık</label><input id="title" maxlength="200" value="Merhaba 👋" required>
+<label for="body">İçerik</label><textarea id="body" rows="3" maxlength="3000" required>Sana Firebase üzerinden bir bildirim gönderdim!</textarea>
+<label for="delay">Gönderim zamanı</label><select id="delay"><option value="0">Hemen gönder</option><option value="5">5 saniye sonra gönder</option></select>
+<p class="hint">Ayşe’nin tarayıcısı başka sekmedeyken sistem bildirimi görünür. Sayfa ön plandaysa mesaj aşağıdaki kutuda gösterilir.</p><button id="send" disabled>Seçilen kullanıcıya gönder</button></form></section>
+<section><h2><span>04</span> Mesajların</h2><p id="received" role="status" aria-live="polite">Henüz canlı bildirim alınmadı.</p><pre id="result">Gönderim sonucu burada görünecek.</pre><button id="refresh-history" class="secondary">Geçmişimi yenile</button><div id="history"></div></section>
+</div><footer>Hedef kullanıcının tüm aktif cihazlarına gönderilir. Her cihazın sonucu ayrı kaydedilir.</footer>
+</main></body></html>

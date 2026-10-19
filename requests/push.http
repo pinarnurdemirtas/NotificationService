@@ -1,0 +1,62 @@
+@baseUrl = http://localhost:5009
+@accessToken = PASTE_LOGIN_RESPONSE_ACCESS_TOKEN
+@recipientUserId = PASTE_RECIPIENT_USER_GUID
+@deviceToken = PASTE_THIS_BROWSER_FCM_TOKEN
+
+### Register (set your own password, minimum 10 characters)
+POST {{baseUrl}}/api/auth/register
+Content-Type: application/json
+
+{
+  "username": "pinar",
+  "displayName": "Pınar",
+  "password": "REPLACE_WITH_YOUR_OWN_PASSWORD"
+}
+
+### Login
+POST {{baseUrl}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "pinar",
+  "password": "REPLACE_WITH_YOUR_OWN_PASSWORD"
+}
+
+### Current user
+GET {{baseUrl}}/api/auth/me
+Authorization: Bearer {{accessToken}}
+
+### Recipient directory
+GET {{baseUrl}}/api/users
+Authorization: Bearer {{accessToken}}
+
+### Register this browser to the authenticated user (use Ayse's accessToken for Ayse's browser)
+POST {{baseUrl}}/api/devices
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "token": "{{deviceToken}}",
+  "name": "Edge - Ayşe",
+  "targetKind": "FcmToken"
+}
+
+### Send to recipient's devices (use Pinar's accessToken to send as Pinar)
+POST {{baseUrl}}/api/push-notifications
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "recipientUserId": "{{recipientUserId}}",
+  "title": "Merhaba Ayşe",
+  "body": "Pınar’dan bir bildirim",
+  "data": { "screen": "notifications" }
+}
+
+### My devices
+GET {{baseUrl}}/api/devices
+Authorization: Bearer {{accessToken}}
+
+### My notification history
+GET {{baseUrl}}/api/push-notifications?skip=0&take=20
+Authorization: Bearer {{accessToken}}

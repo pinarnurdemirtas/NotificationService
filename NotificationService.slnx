@@ -5,4 +5,7 @@
     <Project Path="src/NotificationService.Domain/NotificationService.Domain.csproj" />
     <Project Path="src/NotificationService.Infrastructure/NotificationService.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NotificationService.Tests/NotificationService.Tests.csproj" />
+  </Folder>
 </Solution>

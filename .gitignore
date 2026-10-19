@@ -12,3 +12,5 @@ TestResults/
 .vs/
 .local/
 **/firebase-service-account*.json
+
+src/NotificationService.Api/appsettings.Development.json

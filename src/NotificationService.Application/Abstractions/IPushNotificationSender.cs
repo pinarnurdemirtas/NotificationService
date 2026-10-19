@@ -1,6 +1,9 @@
+using NotificationService.Domain.Entities;
 namespace NotificationService.Application.Abstractions;
-// Firebase implementation will be added in the next step.
+
+public sealed record PushMessage(string Target, string Title, string Body, IReadOnlyDictionary<string, string> Data, PushTargetKind TargetKind = PushTargetKind.FcmToken);
+
 public interface IPushNotificationSender
 {
-    Task<string> SendAsync(string deviceToken, string title, string body, CancellationToken cancellationToken = default);
+    Task<string> SendAsync(PushMessage message, CancellationToken cancellationToken = default);
 }
