@@ -1,0 +1,14 @@
+**/bin/
+**/obj/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.user
+*.suo
+TestResults/
+**/publish/
+.vs/
+.local/
+**/firebase-service-account*.json
